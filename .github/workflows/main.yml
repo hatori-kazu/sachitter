@@ -2,7 +2,7 @@ name: Update Filtered Timeline
 
 on:
   schedule:
-    - cron: '0 */2 * * *'   # 6時間ごと（UTC）
+    - cron: '0 */2 * * *'   # 2時間ごと（UTC）
   workflow_dispatch:          # 手動実行用
 
 permissions:
