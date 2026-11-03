@@ -1,0 +1,94 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--color-text);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, var(--color-secondary-a35), transparent 60%),
+    radial-gradient(900px 500px at 110% 10%, var(--color-primary-a20), transparent 60%),
+    linear-gradient(180deg, var(--color-bg), var(--color-bg-2));
+  background-attachment: fixed;
+  overflow-x: hidden;
+
+  /* ブラウザの文字選択を無効化 */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body.is-loading {
+  overflow: hidden;
+}
+
+/* ページ端の強調枠線（ビューポートに固定） */
+body::before {
+  content: "";
+  position: fixed;
+  inset: var(--frame-inset);
+  border: var(--frame-width) solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.35);
+
+  /* 枠外フィル（outline方式） */
+  outline: 100vmax solid var(--color-bg-2);
+  outline-offset: 0;
+}
+
+h1, h2, h3 { line-height: 1.25; margin: 0; }
+
+a {
+  color: var(--color-primary-strong);
+  text-decoration: none;
+  transition: opacity var(--duration-fast) var(--ease-soft);
+}
+a:hover { opacity: 0.75; }
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-5) var(--space-8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 枠の外側を背景で覆うオーバーレイ */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;                /* 枠線(9999)のすぐ下 */
+  pointer-events: none;
+  box-sizing: border-box;
+  padding: var(--frame-inset);
+
+  /* body と同じグラデーション（継ぎ目なし） */
+  background:
+    radial-gradient(1200px 600px at 10% -10%, var(--color-secondary-a35), transparent 60%),
+    radial-gradient(900px 500px at 110% 10%, var(--color-primary-a20), transparent 60%),
+    linear-gradient(180deg, var(--color-bg), var(--color-bg-2));
+  background-attachment: fixed;
+
+  /* 内側だけくり抜く */
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+}

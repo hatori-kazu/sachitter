@@ -1,0 +1,59 @@
+:root {
+  /* Colors */
+  --color-bg: #fff7f1;
+  --color-bg-2: #ffe8d8;
+  --color-surface: #ffffff;
+  --color-surface-soft: rgba(255, 255, 255, 0.7);
+  --color-text: #2F3437;
+  --color-text-muted: #6f7276;
+  --color-primary: #E8822A;
+  --color-primary-strong: #cf6f1c;
+  --color-secondary: #FFC8AF;
+  --color-accent: #E8822A;
+  --color-border: rgba(47, 52, 55, 0.08);
+  --color-shadow: rgba(232, 130, 42, 0.28);
+
+  /* Primary alpha variants（チャート・チップ等で再利用） */
+  --color-primary-a12: rgba(232, 130, 42, 0.12);
+  --color-primary-a20: rgba(232, 130, 42, 0.20);
+  --color-primary-a25: rgba(232, 130, 42, 0.25);
+  --color-secondary-a35: rgba(255, 200, 175, 0.35);
+
+  /* Typography */
+  --font-jp: 'Zen Maru Gothic', system-ui, sans-serif;
+  --font-en: 'Inter', system-ui, sans-serif;
+  --font-body: var(--font-jp), var(--font-en);
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 999px;
+
+  /* Shadow */
+  --shadow-sm: 0 2px 8px rgba(47, 52, 55, 0.06);
+  --shadow-md: 0 8px 24px rgba(47, 52, 55, 0.08);
+  --shadow-glow: 0 8px 32px var(--color-shadow);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 180ms;
+  --duration-base: 320ms;
+  --duration-slow: 600ms;
+
+  /* Layout */
+  --container-width: 720px;
+  --frame-inset: clamp(8px, 1.5vmin, 14px);
+  --frame-width: 2px;
+}

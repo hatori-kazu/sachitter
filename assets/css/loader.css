@@ -1,0 +1,147 @@
+/* =========================================================
+   loader.css
+   初回ロード用スプラッシュ画面
+   ========================================================= */
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000; /* body::before(枠線) = 9999 より上 */
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(1000px 500px at 20% 0%, var(--color-secondary-a35), transparent 60%),
+    radial-gradient(800px 400px at 100% 100%, var(--color-primary-a20), transparent 60%),
+    linear-gradient(180deg, var(--color-bg), var(--color-bg-2));
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 600ms var(--ease-out),
+    visibility 0s linear 600ms;
+}
+
+.loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5);
+}
+
+/* ---- Avatar + 回転リング ---- */
+.loader__avatar-wrap {
+  position: relative;
+  width: 112px;
+  height: 112px;
+  display: grid;
+  place-items: center;
+}
+
+.loader__avatar-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: var(--color-primary);
+  border-right-color: var(--color-secondary);
+  border-bottom-color: var(--color-primary);
+  animation: spin 1.4s linear infinite;
+}
+
+.loader__avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: var(--shadow-glow);
+  animation: loader-pulse 2s ease-in-out infinite;
+}
+
+.loader__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---- Title シマー ---- */
+.loader__title {
+  font-family: var(--font-jp);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary-strong) 0%,
+    var(--color-secondary) 50%,
+    var(--color-primary-strong) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: loader-shimmer-sweep 2.4s linear infinite;
+}
+
+/* ---- Dots ---- */
+.loader__dots {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.loader__dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  animation: loader-bounce 1.4s infinite ease-in-out;
+}
+
+.loader__dots span:nth-child(2) {
+  animation-delay: 0.2s;
+  background: var(--color-secondary);
+}
+
+.loader__dots span:nth-child(3) {
+  animation-delay: 0.4s;
+  background: var(--color-primary);
+  opacity: 0.7;
+}
+
+/* ---- 下部プログレスバー（3秒で満ちる） ---- */
+.loader__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--color-primary-a12);
+  overflow: hidden;
+}
+
+.loader__progress::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  transform-origin: left center;
+  animation: loader-progress 3s var(--ease-out) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader__avatar-wrap::before,
+  .loader__avatar,
+  .loader__title,
+  .loader__dots span,
+  .loader__progress::after {
+    animation: none !important;
+  }
+}
